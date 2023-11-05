@@ -1,0 +1,3 @@
+[submodule "vendor/ceedling/plugins/mdb"]
+	path = vendor/ceedling/plugins/mdb
+	url = https://github.com/deltalejo/ceedling-mdb-plugin.git
