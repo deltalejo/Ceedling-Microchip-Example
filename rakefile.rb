@@ -9,7 +9,7 @@ DEFAULT_PLATFORM = 'host'.freeze
 DEFAULT_TARGET = 'PIC16F1936'.freeze
 
 platform = DEFAULT_PLATFORM
-target = DEFAULT_TARGET.upcase()
+target = DEFAULT_TARGET
 
 # Get platform and target from arguments
 ARGV&.each do |arg|
@@ -17,7 +17,7 @@ ARGV&.each do |arg|
 	when /^platform:(\w+)/
 		platform = $1
 	when /^target:(\w+)/
-		target = $1.upcase()
+		target = $1
 	end
 end
 
