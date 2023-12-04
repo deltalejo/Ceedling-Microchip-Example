@@ -94,7 +94,7 @@ As easy as:
 
 or specifying the target device:
 
-`ceedling target:pic18f26k22 test:all`
+`ceedling target:PIC18F26K22 test:all`
 
 ### Simulator
 
@@ -105,7 +105,7 @@ e.g.:
 
 or specifying the target device:
 
-`ceedling platform:simulator target:pic18f26k22 test:all`
+`ceedling platform:simulator target:PIC18F26K22 test:all`
 
 ### Hardware
 
@@ -117,4 +117,4 @@ e.g.:
 
 or specifying the target device:
 
-`ceedling platform:target target:pic18f26k22 mdb:serialport[/dev/ttyUSB0] test:all`
+`ceedling platform:target target:PIC18F26K22 mdb:serialport[/dev/ttyUSB0] test:all`
