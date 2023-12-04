@@ -71,14 +71,14 @@ simulator and hardware.
 
 ### Platforms
 
-Each platform has a corresponding configuration file in project root's dir
+Each platform has a corresponding configuration file inside `platforms` dir
 containing only settings specific to the platform, for example, build root dir.
 
 The following are the supported platforms:
 
-- Host: [**`host.yml`**](host.yml)
-- Simulator: [**`simulator.yml`**](simulator.yml)
-- Target: [**`target.yml`**](target.yml)
+- Host: [**`host.yml`**](platforms/host.yml)
+- Simulator: [**`simulator.yml`**](platforms/simulator.yml)
+- Target: [**`target.yml`**](platforms/target.yml)
 
 ### Toolchains
 
