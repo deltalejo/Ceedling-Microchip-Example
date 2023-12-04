@@ -1,6 +1,6 @@
 ---
 :project:
-  :build_root: "build/host/#{TARGET}"
+  :build_root: "build/#{TARGET}/host"
 
 :mdb:
   :test_fixture: false
