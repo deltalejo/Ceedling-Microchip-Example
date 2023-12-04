@@ -1,6 +1,7 @@
 require('ceedling')
 
-# Folder containing hardware variants
+# Folders containing platform and hardware variants
+PLATFORMS_PATH = 'platforms'.freeze
 TARGETS_PATH = 'targets'.freeze
 
 # Set defaults
@@ -24,7 +25,7 @@ PLATFORM = platform
 TARGET = target
 
 # Tell Ceedling to load selected platform and target configuration files
-ENV['CEEDLING_USER_PROJECT_FILE'] = "#{PLATFORM}.yml"
+ENV['CEEDLING_USER_PROJECT_FILE'] = File.join(PLATFORMS_PATH, "#{PLATFORM}.yml")
 ENV['CEEDLING_MIXIN_PROJECT_FILES'] = File.join(TARGETS_PATH, "#{TARGET}.yml")
 
 # Load Ceedling project
