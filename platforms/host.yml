@@ -1,10 +1,7 @@
 ---
 :project:
-  :build_root: "build/#{TARGET}/host"
+  :build_root: build/#{TARGET}/host
 
 :mdb:
   :test_fixture: false
-
-:import:
-  :toolchain: toolchain/gcc.yml
 ...
