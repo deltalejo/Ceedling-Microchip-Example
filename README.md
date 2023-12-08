@@ -61,6 +61,7 @@ e.g.:
   - :xc16_path: /opt/microchip/xc16/v2.10
   - :xc32_path: /opt/microchip/xc32/v4.35
   - :xcdsc_path: /opt/microchip/xc-dsc/v3.00
+...
 ```
 
 ## Project organization
