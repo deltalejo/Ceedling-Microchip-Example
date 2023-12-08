@@ -1,0 +1,25 @@
+---
+:tools:
+  :test_compiler:
+    :name: gcc_test_compiler
+    :executable: gcc
+    :arguments:
+      - -I$: COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
+      - -I$: COLLECTION_PATHS_TEST_TOOLCHAIN_INCLUDE
+      - -D$: COLLECTION_DEFINES_TEST_AND_VENDOR
+      - -g
+      - -std=c99
+      - -MMD
+      - -MF ${4}
+      - -c
+      - -o ${2}
+      - ${1}
+  :test_linker:
+    :name: gcc_test_linker
+    :executable: gcc
+    :arguments:
+      - ${5}
+      - ${4}
+      - -o ${2}
+      - ${1}
+...
