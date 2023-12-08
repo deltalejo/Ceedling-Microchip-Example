@@ -29,6 +29,11 @@
     - *common_defines
     - TEST
 
+# Clear tools configuration to avoid giving unsopported options to XC compilers.
+:tools:
+  :test_compiler: {}
+  :test_linker: {}
+
 :cmock:
   :mock_prefix: mock_
   :when_no_prototypes: :warn
