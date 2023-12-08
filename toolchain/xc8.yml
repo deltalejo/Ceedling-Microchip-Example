@@ -1,0 +1,57 @@
+---
+:environment:
+  - :path:
+      - "#{ENV['XC8_PATH']}/bin"
+      - "#{ENV['PATH']}"
+
+:extension:
+  :object: .p1
+  :executable: .elf
+
+:unity:
+  :defines:
+    - UNITY_EXCLUDE_FLOAT
+    - UNITY_EXCLUDE_FLOAT_PRINT
+    - UNITY_EXCLUDE_DETAILS
+    - UNITY_POINTER_WIDTH=16
+
+:cmock:
+  :defines:
+    - CMOCK_MEM_STATIC
+    - CMOCK_MEM_SIZE=64
+    - CMOCK_MEM_ALIGN=1
+
+:tools:
+  :test_compiler:
+    :name: xc8_test_compiler
+    :executable: xc8-cc
+    :arguments:
+      - -I$: COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
+      - -I$: COLLECTION_PATHS_TEST_TOOLCHAIN_INCLUDE
+      - -D$: COLLECTION_DEFINES_TEST_AND_VENDOR
+      - -mcpu=#{DEVICE}
+      - -mdfp=#{File.expand_path(eval(DFP))}
+      - -std=c99
+      - -mwarn=-9
+      - -gdwarf-3
+      - -mdefault-config-bits
+      - -merrata=default
+      - -Og
+      - -MMD
+      - -MF ${4}
+      - "-Wa,-a='${3}'"
+      - -c
+      - -o ${2}
+      - ${1}
+  :test_linker:
+    :name: xc8_test_linker
+    :executable: xc8-cc
+    :arguments:
+      - ${5}
+      - ${4}
+      - -mcpu=#{DEVICE}
+      - -mdfp=#{File.expand_path(eval(DFP))}
+      - "-Wl,-Map='${3}'"
+      - -o ${2}
+      - ${1}
+...
