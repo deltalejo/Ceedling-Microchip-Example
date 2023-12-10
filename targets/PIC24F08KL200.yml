@@ -1,0 +1,10 @@
+---
+:device: PIC24F08KL200
+:dfp: File.join(
+    ENV['DFP_PATH'],
+    'Microchip/PIC24F-KA-KL-KM_DFP/1.5.253/xc16'
+  )
+
+:import:
+  :toolchain: "toolchain/#{(PLATFORM == 'host')? 'gcc' : 'xc16'}.yml"
+...
