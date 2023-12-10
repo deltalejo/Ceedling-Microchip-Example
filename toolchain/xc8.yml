@@ -32,14 +32,13 @@
       - -mcpu=#{DEVICE}
       - -mdfp=#{File.expand_path(eval(DFP))}
       - -std=c99
-      - -mwarn=-9
       - -gdwarf-3
+      - -mwarn=-9
       - -mdefault-config-bits
       - -merrata=default
-      - -Og
       - -MMD
       - -MF ${4}
-      - "-Wa,-a='${3}'"
+      - -Wa,-a=${3}
       - -c
       - -o ${2}
       - ${1}
@@ -51,7 +50,7 @@
       - ${4}
       - -mcpu=#{DEVICE}
       - -mdfp=#{File.expand_path(eval(DFP))}
-      - "-Wl,-Map='${3}'"
+      - -Wl,-Map=${3}
       - -o ${2}
       - ${1}
 ...
