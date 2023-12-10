@@ -22,4 +22,13 @@
       - ${4}
       - -o ${2}
       - ${1}
+  :test_fixture:
+    :name: gdb_test_fixture
+    :executable: gdb
+    :arguments:
+      - -q
+      - -ex run
+      - -ex backtrace
+      - --batch
+      - ${1}
 ...
