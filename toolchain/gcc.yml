@@ -1,4 +1,7 @@
 ---
+:extension:
+  :executable: .elf
+
 :tools:
   :test_compiler:
     :name: gcc_test_compiler
@@ -7,7 +10,7 @@
       - -I$: COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
       - -I$: COLLECTION_PATHS_TEST_TOOLCHAIN_INCLUDE
       - -D$: COLLECTION_DEFINES_TEST_AND_VENDOR
-      - -g
+      - -ggdb
       - -std=c99
       - -MMD
       - -MF ${4}
