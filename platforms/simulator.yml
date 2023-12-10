@@ -2,18 +2,6 @@
 :project:
   :build_root: build/#{TARGET}/simulator
 
-:paths:
-  :support:
-    - test/support/#{TARGET}
-
-:files:
-  :support:
-    - uart.c
-
-:unity:
-  :defines:
-    - UNITY_INCLUDE_CONFIG_H
-
 :mdb:
   :breakpoints:
     - uart_output_complete
