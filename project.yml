@@ -13,11 +13,12 @@
 :paths:
   :test:
     - +:test/**
-    - -:test/support
+    - -:test/support/**
   :source:
     - src/**
   :support:
     - test/support
+    - test/support/#{TARGET}
   :libraries: []
 
 :defines:
@@ -69,4 +70,5 @@
 
 :import:
   :env: env.yml
+  :support: test/support/#{TARGET}/#{PLATFORM}.yml
 ...
