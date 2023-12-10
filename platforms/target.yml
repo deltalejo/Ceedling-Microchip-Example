@@ -1,4 +1,8 @@
 ---
 :project:
   :build_root: build/#{TARGET}/target
+
+:mdb:
+  :breakpoints:
+    - uart_output_complete
 ...
