@@ -1,0 +1,58 @@
+---
+:environment:
+  - :path:
+      - "#{ENV['XC16_PATH']}/bin"
+      - "#{ENV['PATH']}"
+
+:extension:
+  :executable: .elf
+
+:unity:
+  :defines:
+    - UNITY_EXCLUDE_FLOAT
+    - UNITY_EXCLUDE_FLOAT_PRINT
+    - UNITY_POINTER_WIDTH=16
+
+:cmock:
+  :defines:
+    - CMOCK_MEM_STATIC
+    - CMOCK_MEM_SIZE=64
+    - CMOCK_MEM_ALIGN=1
+
+:tools:
+  :test_compiler:
+    :name: xc16_test_compiler
+    :executable: xc16-gcc
+    :arguments:
+      - -I$: COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
+      - -I$: COLLECTION_PATHS_TEST_TOOLCHAIN_INCLUDE
+      - -D$: COLLECTION_DEFINES_TEST_AND_VENDOR
+      - -mcpu=#{DEVICE.sub(/^\D+/, "")}
+      - -mdfp=#{File.expand_path(eval(DFP))}
+      - -g
+      - -std=c99
+      - -Wall
+      - -Wextra
+      - -Werror
+      - -merrata=all
+      - -ffunction-sections
+      - -MMD
+      - -MF ${4}
+      - -Wa,-adhilmn=${3}
+      - -c
+      - -o ${2}
+      - ${1}
+  :test_linker:
+    :name: xc16_test_linker
+    :executable: xc16-gcc
+    :arguments:
+      - ${5}
+      - ${4}
+      - -mcpu=#{DEVICE.gsub(/^\D+/, "")}
+      - -mdfp=#{File.expand_path(eval(DFP))}
+      - -Tp#{DEVICE.gsub(/^\D+/, "")}.gld
+      - -Wl,--gc-sections
+      - -Wl,-Map=${3}
+      - -o ${2}
+      - ${1}
+...
