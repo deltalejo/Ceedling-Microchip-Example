@@ -4,5 +4,8 @@
 
 :mdb:
   :breakpoints:
-    - uart_output_complete
+    - uart_end
+  :hwtools_properties:
+    :snap:
+      :programoptions.pgmspeed: Max
 ...
