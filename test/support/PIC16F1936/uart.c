@@ -1,36 +1,42 @@
+#include <stdbool.h>
+
 #include <xc.h>
 
 #include "uart.h"
 
-static inline void poll_tx_complete(void)
-{
-	while (!PIR1bits.TXIF);
-}
-
-static void uart_output_complete()
-{
-	NOP();
-}
-
 void uart_start(void)
 {
-	RCSTAbits.SPEN = 1;
+	OSCCONbits.IRCF = 14;
+	
+	while (!OSCSTATbits.PLLR);
+	
+	BAUDCONbits.BRG16 = 1;
+	TXSTAbits.BRGH = 1;
+	SPBRG = 68;
+	
 	TXSTAbits.TXEN = 1;
+	RCSTAbits.SPEN = 1;
+}
+
+void uart_stop(void)
+{
+	while (!TXSTAbits.TRMT);
+	
+	TXSTAbits.TXEN = 0;
+	RCSTAbits.SPEN = 0;
+	
+	uart_end();
 }
 
 void uart_end(void)
 {
-	poll_tx_complete();
-	TXSTAbits.TXEN = 0;
-	RCSTAbits.SPEN = 0;
-	uart_output_complete();
+	while (true);
 }
 
 int uart_putchar(int c)
 {
+	while (!PIR1bits.TXIF);
 	TXREG = (unsigned char) c;
-	NOP();
-	poll_tx_complete();
 	return c;
 }
 

@@ -1,6 +1,7 @@
 ---
 :files:
   :support:
+    - config.c
     - uart.c
 
 :unity:

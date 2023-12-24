@@ -5,6 +5,6 @@
 
 #define UNITY_OUTPUT_START()       uart_start()
 #define UNITY_OUTPUT_CHAR(c)       uart_putchar(c)
-#define UNITY_OUTPUT_COMPLETE()    uart_end()
+#define UNITY_OUTPUT_COMPLETE()    uart_stop()
 
 #endif /* UNITY_CONFIG_H */
