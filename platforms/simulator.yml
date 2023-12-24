@@ -2,6 +2,12 @@
 :project:
   :build_root: build/#{TARGET}/simulator
 
+:defines:
+  :test:
+    - SIMULATOR
+  :test_preprocess:
+    - SIMULATOR
+
 :mdb:
   :breakpoints:
     - uart_end
