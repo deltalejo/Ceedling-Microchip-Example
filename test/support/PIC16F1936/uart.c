@@ -8,14 +8,16 @@ void uart_start(void)
 {
 	OSCCONbits.IRCF = 14;
 	
+	#ifndef SIMULATOR
 	while (!OSCSTATbits.PLLR);
+	#endif
 	
 	BAUDCONbits.BRG16 = 1;
 	TXSTAbits.BRGH = 1;
 	SPBRG = 68;
 	
-	TXSTAbits.TXEN = 1;
 	RCSTAbits.SPEN = 1;
+	TXSTAbits.TXEN = 1;
 }
 
 void uart_stop(void)
