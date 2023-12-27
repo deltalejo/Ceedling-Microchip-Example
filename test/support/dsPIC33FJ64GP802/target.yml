@@ -1,0 +1,10 @@
+---
+:files:
+  :support:
+    - config.c
+    - uart.c
+
+:unity:
+  :defines:
+    - UNITY_INCLUDE_CONFIG_H
+...
