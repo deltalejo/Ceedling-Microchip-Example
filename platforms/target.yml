@@ -5,7 +5,7 @@
 :mdb:
   :breakpoints:
     - uart_end
-  :hwtools_properties:
+  :tools:
     :snap:
       :programoptions.pgmspeed: Max
 ...

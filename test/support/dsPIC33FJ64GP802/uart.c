@@ -4,6 +4,8 @@
 
 #include "uart.h"
 
+void uart_end(void);
+
 void uart_start(void)
 {
 	PLLFBD = 63;
