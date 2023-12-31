@@ -1,0 +1,11 @@
+---
+:device: PIC32MX154F128B
+:dfp: File.join(
+    ENV['MPLABX_PATH'],
+    'packs',
+    'Microchip/PIC32MX_DFP/1.5.259'
+  )
+
+:import:
+  :toolchain: "toolchain/#{(PLATFORM == 'host')? 'gcc' : 'xc32'}.yml"
+...

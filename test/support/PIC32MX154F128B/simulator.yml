@@ -1,0 +1,8 @@
+---
+:mdb:
+  :tools:
+    :sim:
+      :uart1io.uartioenabled: false
+      :uart2io.uartioenabled: true
+      :uart2io.output: window
+...
