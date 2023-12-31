@@ -1,0 +1,52 @@
+---
+:environment:
+  - :path:
+      - "#{ENV['XC32_PATH']}/bin"
+      - "#{ENV['PATH']}"
+
+:extension:
+  :executable: .elf
+
+:unity:
+  :defines:
+    - UNITY_EXCLUDE_FLOAT
+    - UNITY_EXCLUDE_FLOAT_PRINT
+    - UNITY_POINTER_WIDTH=32
+
+:tools:
+  :test_compiler:
+    :name: xc32_test_compiler
+    :executable: xc32-gcc
+    :arguments:
+      - -I$: COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
+      - -I$: COLLECTION_PATHS_TEST_TOOLCHAIN_INCLUDE
+      - -D$: COLLECTION_DEFINES_TEST_AND_VENDOR
+      - -mprocessor=#{DEVICE.sub(/^\D+/, "")}
+      - -mdfp=#{File.expand_path(eval(DFP))}
+      - -g
+      - -std=c99
+      - -Wall
+      - -Wextra
+      - -Werror
+      - -ffunction-sections
+      - -MMD
+      - -MF ${4}
+      - -Wa,-adhlmn=${3}
+      - -c
+      - -o ${2}
+      - ${1}
+  :test_linker:
+    :name: xc32_test_linker
+    :executable: xc32-gcc
+    :arguments:
+      - ${5}
+      - ${4}
+      - -mprocessor=#{DEVICE.gsub(/^\D+/, "")}
+      - -mdfp=#{File.expand_path(eval(DFP))}
+      - -mdebugger
+      - -Wl,--defsym=_min_heap_size=256
+      - -Wl,--gc-sections
+      - -Wl,-Map=${3}
+      - -o ${2}
+      - ${1}
+...
