@@ -1,7 +1,8 @@
 ---
 :device: dsPIC33FJ64GP802
 :dfp: File.join(
-    ENV['DFP_PATH'],
+    ENV['MPLABX_PATH'],
+    'packs',
     'Microchip/dsPIC33F-GP-MC_DFP/1.4.235/xc16'
   )
 
