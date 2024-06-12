@@ -53,14 +53,20 @@ e.g.:
 ---
 :environment:
   # MPLAB X path (for packs on MPLABX installation dir)
-  - :mplabx_path: /opt/microchip/mplabx/v6.15
+  - :mplabx_path: /opt/microchip/mplabx/v6.20
   # Device Packs path (for packs on user installation dir)
   - :dfp_path: ~/.mchp_packs
   # Compilers paths
-  - :xc8_path: /opt/microchip/xc8/v2.45
+  - :xc8_path: /opt/microchip/xc8/v2.46
   - :xc16_path: /opt/microchip/xc16/v2.10
-  - :xc32_path: /opt/microchip/xc32/v4.35
-  - :xcdsc_path: /opt/microchip/xc-dsc/v3.00
+  - :xc32_path: /opt/microchip/xc32/v4.40
+  - :xcdsc_path: /opt/microchip/xc-dsc/v3.10
+  - :path:
+      - "#{ENV['XC8_PATH']}/bin"
+      - "#{ENV['XC16_PATH']}/bin"
+      - "#{ENV['XC32_PATH']}/bin"
+      - "#{ENV['XCDSC_PATH']}/bin"
+      - "#{ENV['PATH']}"
 ...
 ```
 
@@ -89,33 +95,12 @@ The following are the supported platforms:
 
 ### Host
 
-As easy as:
-
-`ceedling test:all`
-
-or specifying the target device:
-
-`ceedling target:PIC18F26K22 test:all`
+`ceedling -m PIC18F26K22 -m host -m gcc test:all`
 
 ### Simulator
 
-Give `platform:simulator` as an argument when calling Ceedling.
-e.g.:
-
-`ceedling platform:simulator test:all`
-
-or specifying the target device:
-
-`ceedling platform:simulator target:PIC18F26K22 test:all`
+`ceedling -m PIC18F26K22 -m simulator -m xc8 test:all`
 
 ### Hardware
 
-Give `platform:target` as an argument when calling Ceedling along with serial
-port parameters.
-e.g.:
-
-`ceedling platform:target mdb:serialport[/dev/ttyUSB0] test:all`
-
-or specifying the target device:
-
-`ceedling platform:target target:PIC18F26K22 mdb:serialport[/dev/ttyUSB0] test:all`
+`ceedling -m PIC18F26K22 -m target -m xc8 mdb:serialport[/dev/ttyUSB0] test:all`
