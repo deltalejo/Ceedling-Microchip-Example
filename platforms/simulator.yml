@@ -1,6 +1,6 @@
 ---
-:project:
-  :build_root: build/#{TARGET}/simulator
+:environment:
+  - :platform: simulator
 
 :defines:
   :test:

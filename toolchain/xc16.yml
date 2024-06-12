@@ -1,9 +1,4 @@
 ---
-:environment:
-  - :path:
-      - "#{ENV['XC16_PATH']}/bin"
-      - "#{ENV['PATH']}"
-
 :extension:
   :executable: .elf
 
@@ -24,10 +19,9 @@
     :name: xc16_test_compiler
     :executable: xc16-gcc
     :arguments:
-      - -I$: COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
-      - -I$: COLLECTION_PATHS_TEST_TOOLCHAIN_INCLUDE
-      - -D$: COLLECTION_DEFINES_TEST_AND_VENDOR
-      - -mcpu=#{DEVICE.sub(/^\D+/, "")}
+      - -I"${5}"
+      - -D${6}
+      - -mcpu=#{ENV['DEVICE'].sub(/^\D+/, "")}
       - -mdfp=#{File.expand_path(eval(DFP))}
       - -g
       - -std=c99
@@ -48,9 +42,9 @@
     :arguments:
       - ${5}
       - ${4}
-      - -mcpu=#{DEVICE.gsub(/^\D+/, "")}
+      - -mcpu=#{ENV['DEVICE'].gsub(/^\D+/, "")}
       - -mdfp=#{File.expand_path(eval(DFP))}
-      - -Tp#{DEVICE.gsub(/^\D+/, "")}.gld
+      - -Tp#{ENV['DEVICE'].gsub(/^\D+/, "")}.gld
       - -Wl,--gc-sections
       - -Wl,-Map=${3}
       - -o ${2}

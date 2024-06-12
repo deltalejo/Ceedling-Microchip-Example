@@ -1,9 +1,4 @@
 ---
-:environment:
-  - :path:
-      - "#{ENV['XC32_PATH']}/bin"
-      - "#{ENV['PATH']}"
-
 :extension:
   :executable: .elf
 
@@ -18,10 +13,9 @@
     :name: xc32_test_compiler
     :executable: xc32-gcc
     :arguments:
-      - -I$: COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
-      - -I$: COLLECTION_PATHS_TEST_TOOLCHAIN_INCLUDE
-      - -D$: COLLECTION_DEFINES_TEST_AND_VENDOR
-      - -mprocessor=#{DEVICE.sub(/^\D+/, "")}
+      - -I"${5}"
+      - -D${6}
+      - -mprocessor=#{ENV['DEVICE'].sub(/^\D+/, "")}
       - -mdfp=#{File.expand_path(eval(DFP))}
       - -g
       - -std=c99
@@ -41,7 +35,7 @@
     :arguments:
       - ${5}
       - ${4}
-      - -mprocessor=#{DEVICE.gsub(/^\D+/, "")}
+      - -mprocessor=#{ENV['DEVICE'].gsub(/^\D+/, "")}
       - -mdfp=#{File.expand_path(eval(DFP))}
       - -mdebugger
       - -Wl,--defsym=_min_heap_size=256

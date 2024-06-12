@@ -1,6 +1,6 @@
 ---
-:project:
-  :build_root: build/#{TARGET}/target
+:environment:
+  - :platform: target
 
 :mdb:
   :breakpoints:

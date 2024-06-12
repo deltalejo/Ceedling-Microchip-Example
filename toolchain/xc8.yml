@@ -1,9 +1,4 @@
 ---
-:environment:
-  - :path:
-      - "#{ENV['XC8_PATH']}/bin"
-      - "#{ENV['PATH']}"
-
 :extension:
   :object: .p1
   :executable: .elf
@@ -26,10 +21,9 @@
     :name: xc8_test_compiler
     :executable: xc8-cc
     :arguments:
-      - -I$: COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
-      - -I$: COLLECTION_PATHS_TEST_TOOLCHAIN_INCLUDE
-      - -D$: COLLECTION_DEFINES_TEST_AND_VENDOR
-      - -mcpu=#{DEVICE}
+      - -I"${5}"
+      - -D${6}
+      - -mcpu=#{ENV['DEVICE']}
       - -mdfp=#{File.expand_path(eval(DFP))}
       - -std=c99
       - -gdwarf-3
@@ -48,7 +42,7 @@
     :arguments:
       - ${5}
       - ${4}
-      - -mcpu=#{DEVICE}
+      - -mcpu=#{ENV['DEVICE']}
       - -mdfp=#{File.expand_path(eval(DFP))}
       - -Wl,-Map=${3}
       - -o ${2}
